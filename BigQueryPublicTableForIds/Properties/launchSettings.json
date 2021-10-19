@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "BigQueryPublicTableForIds": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "Key": "Value",
+        "GOOGLE_APPLICATION_CREDENTIALS": "F:\\Socgen\\projects\\weighty-obelisk-272709-c1560141cfd6-gscp-key-bigquery_gsc-ino-bigquery-service-acc.json"
+      }
+    }
+  }
+}
