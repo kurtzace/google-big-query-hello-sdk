@@ -53,7 +53,18 @@ namespace BigQueryPublicTableForIds.Infra.DataStorage
             {
                 { ArticleIdColumnName, x}
             });
-            table.InsertRows(rowsToBe);
+            for (int i = 0; i < rowsToBe.Count(); i=i+ 49000)
+            {
+                table.InsertRows(rowsToBe.Take(i+ 49000).Skip(i));
+            }
+            //if (rowsToBe.Count() > 50000)
+            //{
+            //    table.InsertRows(rowsToBe.Take(49000));
+            //    table.InsertRows(rowsToBe.Skip(49000));
+            //} else
+            //{
+            //    table.InsertRows(rowsToBe);
+            //}
         }
     }
 }
