@@ -10,11 +10,12 @@ namespace BigQueryPublicTableForIds
         static void Main(string[] args)
         {
             StartupUtility.LoadSettings();
-            Console.WriteLine("Enter choice:\r\n1.ViewRecords (arg tableName).\r\n2.InsertRecords (args fileName.csv)");
+            
             var bqIntegrator = new GoogleBigQueryIntegrator();
 
             if (args.Length == 0)
             {
+                Console.WriteLine("Enter choice:\r\n1.ViewRecords (arg tableName).\r\n2.InsertRecords (args fileName.csv)");
                 UserInput(bqIntegrator);
                 Finish();
                 Console.ReadLine();
@@ -26,7 +27,10 @@ namespace BigQueryPublicTableForIds
                 View(bqIntegrator);
             } else
             {
-                Write(bqIntegrator, args[1]);
+                if(args.Length>2)
+                    Write(bqIntegrator, args[1], args[2]);
+                else
+                    Write(bqIntegrator, args[1]);
             }
             Finish();
 
@@ -58,10 +62,10 @@ namespace BigQueryPublicTableForIds
             }
         }
 
-        private static void Write(GoogleBigQueryIntegrator bqIntegrator, string fileName)
+        private static void Write(GoogleBigQueryIntegrator bqIntegrator, string fileName, string postfix="")
         {
             var lines = System.IO.File.ReadAllLines(fileName).Skip(1);
-            bqIntegrator.CreateTable(lines, $"articleids_{DateTime.Now:MMdd}", "an");
+            bqIntegrator.CreateTable(lines, $"articleids_{DateTime.Now:MMdd}{postfix}", "an");
         }
 
         private static void View(GoogleBigQueryIntegrator bqIntegrator)
