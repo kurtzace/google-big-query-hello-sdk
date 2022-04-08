@@ -12,3 +12,12 @@ To view table/test bigquery
 To create table with entries from input.csv
 
 ./BigQueryPublicTableForIds 2 input.csv OptionalTablePostFix
+
+input.csv should be
+an
+113232
+132323
+
+and 
+
+table postfix is because we need to create unqiue table names on the same day even if you delete it
